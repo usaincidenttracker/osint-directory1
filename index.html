@@ -11,7 +11,8 @@
   :root{
     --bg:#0F1613; --panel:#161F1A; --panel-2:#1C2822; --line:#2B3A32; --line-soft:#22302A;
     --text:#E9EEE7; --muted:#8FA396; --muted-2:#5E7268;
-    --accent:#4FB286; --accent-dim:#2E4A3D; --amber:#D9A441; --red:#C1554A; --radius:2px;
+    --accent:#4FB286; --accent-dim:#2E4A3D; --amber:#D9A441; --amber-soft:#3A2E14; --red:#C1554A; --red-soft:#3A1F1B;
+    --radius:2px;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -24,7 +25,7 @@
   .display{ font-family:'Big Shoulders Display', sans-serif; text-transform:uppercase; letter-spacing:0.02em; }
   .mono{ font-family:'IBM Plex Mono', monospace; }
 
-  .shell{ max-width:1100px; margin:0 auto; padding:28px 20px 80px; }
+  .shell{ max-width:1180px; margin:0 auto; padding:28px 20px 80px; }
 
   .config-banner{
     background:#2A1F14; border:1px solid var(--amber); color:#E9D8B8; border-radius:var(--radius);
@@ -33,13 +34,13 @@
   .config-banner code{ background:#1a130c; padding:1px 5px; border-radius:2px; }
 
   .masthead{ display:flex; justify-content:space-between; align-items:flex-end; border-bottom:1px solid var(--line); padding-bottom:16px; margin-bottom:20px; flex-wrap:wrap; gap:14px; }
-  .masthead h1{ font-size:clamp(28px,4vw,40px); font-weight:800; margin:0; line-height:0.95; }
-  .masthead .subtitle{ color:var(--muted); font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase; margin-top:4px; }
+  .masthead h1{ font-size:clamp(26px,4vw,36px); font-weight:800; margin:0; line-height:0.95; }
+  .masthead .subtitle{ color:var(--muted); font-size:12px; letter-spacing:0.08em; text-transform:uppercase; margin-top:4px; }
   .stamp{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--accent); border:1px solid var(--accent-dim); padding:4px 8px; border-radius:var(--radius); letter-spacing:0.08em; white-space:nowrap; }
 
   .tabs{ display:flex; gap:2px; margin-bottom:26px; }
   .tab-btn{ font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:0.06em; text-transform:uppercase; background:var(--panel); border:1px solid var(--line); color:var(--muted); padding:10px 18px; cursor:pointer; border-radius:var(--radius); }
-  .tab-btn.active{ color:var(--bg); background:var(--accent); border-color:var(--accent); }
+  .tab-btn.active{ color:#0B120E; background:var(--accent); border-color:var(--accent); }
   .tab-btn:not(.active):hover{ color:var(--text); border-color:var(--muted-2); }
   .view{ display:none; } .view.active{ display:block; }
 
@@ -57,44 +58,61 @@
   .btn.ghost:hover{ color:var(--text); border-color:var(--muted-2); }
   .btn.danger{ background:var(--red); color:#1a0d0b; }
   .btn:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn.block{ width:100%; }
 
   .result-count{ color:var(--muted-2); font-size:12px; font-family:'IBM Plex Mono',monospace; margin:2px 2px 14px; }
-  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:14px; }
-  .card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); position:relative; overflow:hidden; }
-  .card-top{ display:flex; gap:12px; padding:14px 14px 12px; }
-  .photo{ width:58px; height:58px; border-radius:var(--radius); background:var(--panel-2); border:1px solid var(--line-soft); flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; color:var(--muted-2); font-size:20px; }
+  .grid{ display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:14px; }
+  .card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px; cursor:pointer; transition:border-color .12s; }
+  .card:hover{ border-color:var(--accent-dim); }
+  .card-top{ display:flex; gap:12px; }
+  .photo{ width:52px; height:52px; border-radius:var(--radius); background:var(--panel-2); border:1px solid var(--line-soft); flex-shrink:0; overflow:hidden; display:flex; align-items:center; justify-content:center; color:var(--muted-2); font-size:18px; }
   .photo img{ width:100%; height:100%; object-fit:cover; }
-  .card-id{ position:absolute; top:10px; right:12px; font-size:10px; color:var(--muted-2); }
-  .card-title{ font-size:17px; font-weight:600; margin:0 0 2px; padding-right:70px; }
-  .card-country{ color:var(--muted); font-size:12.5px; }
-  .stamp-corner{ position:absolute; bottom:10px; right:12px; font-family:'IBM Plex Mono', monospace; font-size:9px; letter-spacing:0.08em; padding:2px 6px; border-radius:var(--radius); border:1px solid; }
-  .stamp-corner.high{ color:var(--accent); border-color:var(--accent-dim); }
-  .stamp-corner.mid{ color:var(--amber); border-color:#4a3d1f; }
-  .stamp-corner.low{ color:var(--red); border-color:#4a2521; }
-  .stamp-corner.none{ color:var(--muted-2); border-color:var(--line-soft); }
-  .meter-row{ display:flex; align-items:center; gap:10px; padding:0 14px 14px; }
-  .meter{ display:flex; gap:2px; flex:1; }
-  .meter i{ height:7px; flex:1; background:var(--line-soft); border-radius:1px; }
-  .meter i.on.g{ background:var(--accent); } .meter i.on.a{ background:var(--amber); } .meter i.on.r{ background:var(--red); }
-  .meter-score{ font-family:'IBM Plex Mono', monospace; font-size:13px; min-width:34px; text-align:right; }
-  .meter-score.na{ color:var(--muted-2); }
-  .card-foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-top:1px solid var(--line-soft); background:var(--panel-2); }
+  .card-title{ font-size:16px; font-weight:600; margin:0 0 3px; }
+  .card-loc{ color:var(--muted); font-size:12.5px; display:flex; align-items:center; gap:4px; }
+  .star-badge{ display:inline-flex; align-items:center; gap:4px; background:var(--amber-soft); color:var(--amber); font-size:12.5px; font-weight:600; padding:3px 9px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; }
+  .star-badge.na{ background:var(--panel-2); color:var(--muted-2); }
+  .card-foot{ display:flex; justify-content:space-between; align-items:center; margin-top:12px; padding-top:12px; border-top:1px solid var(--line-soft); }
   .note-count{ color:var(--muted); font-size:12px; font-family:'IBM Plex Mono',monospace; }
-  .link-btn{ background:none; border:none; color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase; cursor:pointer; padding:0; }
-  .dossier-body{ display:none; padding:4px 14px 16px; border-top:1px dashed var(--line); }
-  .dossier-body.open{ display:block; }
-  .notes-list{ display:flex; flex-direction:column; gap:10px; margin:12px 0; }
-  .note{ background:var(--bg); border:1px solid var(--line-soft); border-radius:var(--radius); padding:10px 12px; }
-  .note-head{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted-2); font-family:'IBM Plex Mono',monospace; margin-bottom:5px; }
-  .note-score{ color:var(--text); }
-  .note-text{ font-size:13.5px; line-height:1.5; color:var(--text); white-space:pre-wrap; }
-  .empty-note{ color:var(--muted-2); font-size:13px; font-style:italic; }
-  .add-note{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-  .score-pick{ display:flex; gap:5px; flex-wrap:wrap; }
-  .score-pick button{ width:30px; height:30px; border-radius:var(--radius); border:1px solid var(--line); background:var(--bg); color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12px; cursor:pointer; }
-  .score-pick button.sel{ background:var(--accent); color:#0B120E; border-color:var(--accent); font-weight:600; }
+
   .empty-state{ text-align:center; padding:60px 20px; color:var(--muted-2); }
   .empty-state .display{ font-size:22px; color:var(--muted); margin-bottom:6px; }
+
+  /* ---------- Dossier detail page ---------- */
+  .back-link{ background:none; border:none; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:0.04em; cursor:pointer; padding:0 0 18px; display:flex; align-items:center; gap:6px; }
+  .back-link:hover{ color:var(--accent); }
+  .dossier-grid{ display:grid; grid-template-columns:260px 1fr 300px; gap:22px; align-items:start; }
+  @media (max-width:920px){ .dossier-grid{ grid-template-columns:1fr; } }
+
+  .dossier-photo{ width:100%; aspect-ratio:1/0.85; border-radius:var(--radius); overflow:hidden; background:var(--panel-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; color:var(--muted-2); font-size:34px; margin-bottom:14px; }
+  .dossier-photo img{ width:100%; height:100%; object-fit:cover; }
+  .dossier-loc{ display:flex; align-items:center; gap:6px; color:var(--text); font-size:14px; margin-bottom:14px; }
+  .score-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px; }
+  .score-card .big-star{ display:flex; align-items:center; gap:8px; font-size:20px; font-weight:700; color:var(--amber); font-family:'IBM Plex Mono',monospace; }
+  .score-card .cap{ color:var(--muted); font-size:12.5px; margin-top:3px; }
+  .alias-label{ font-size:10.5px; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-2); font-family:'IBM Plex Mono',monospace; margin:16px 0 8px; }
+  .alias-chips{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+  .alias-chip{ background:var(--panel-2); border:1px solid var(--line); color:var(--muted); font-size:12px; padding:3px 9px; border-radius:var(--radius); font-family:'IBM Plex Mono',monospace; text-transform:uppercase; letter-spacing:0.04em; }
+
+  .dossier-handle{ font-size:30px; font-weight:800; margin:0 0 20px; line-height:1.15; }
+  .section-label{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; font-weight:600; color:var(--muted); margin:0 0 12px; font-family:'IBM Plex Mono',monospace; }
+
+  .notes-list{ display:flex; flex-direction:column; gap:12px; }
+  .note{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:14px; }
+  .note-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px; }
+  .note-author{ font-weight:600; font-size:13.5px; }
+  .note-text{ font-size:14px; line-height:1.55; color:var(--text); white-space:pre-wrap; margin:4px 0 10px; }
+  .note-foot{ display:flex; justify-content:space-between; align-items:center; }
+  .note-date{ color:var(--muted-2); font-size:11.5px; font-family:'IBM Plex Mono',monospace; }
+  .note-del{ background:none; border:none; color:var(--muted); font-size:11.5px; cursor:pointer; display:flex; align-items:center; gap:4px; font-family:'IBM Plex Mono',monospace; }
+  .note-del:hover{ color:var(--red); }
+  .empty-note{ color:var(--muted-2); font-size:13.5px; font-style:italic; }
+
+  .add-note-card{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px; }
+  .add-note-card h3{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); font-weight:600; margin:0 0 16px; font-family:'IBM Plex Mono',monospace; }
+  .form-col{ display:flex; flex-direction:column; gap:14px; }
+  .slider-label-row{ display:flex; justify-content:space-between; align-items:baseline; }
+  input[type="range"]{ width:100%; accent-color:var(--accent); padding:0; margin:6px 0 2px; }
+  .slider-caps{ display:flex; justify-content:space-between; font-size:11px; color:var(--muted-2); font-family:'IBM Plex Mono',monospace; }
 
   .login-wrap{ max-width:380px; margin:60px auto; text-align:center; }
   .login-wrap .display{ font-size:22px; margin-bottom:4px; }
@@ -104,7 +122,6 @@
   @media (max-width:820px){ .staff-grid{ grid-template-columns:1fr; } }
   .panel{ background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:16px; }
   .panel h3{ font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin:0 0 14px; font-family:'IBM Plex Mono',monospace; }
-  .form-col{ display:flex; flex-direction:column; gap:12px; }
   .upload{ border:1px dashed var(--line); border-radius:var(--radius); padding:14px; text-align:center; color:var(--muted-2); font-size:12px; cursor:pointer; position:relative; }
   .upload input{ position:absolute; inset:0; opacity:0; cursor:pointer; }
   .upload-preview{ width:56px; height:56px; margin:0 auto 8px; border-radius:var(--radius); overflow:hidden; background:var(--bg); display:flex; align-items:center; justify-content:center; }
@@ -123,6 +140,21 @@
   .toast.show{ opacity:1; }
   .toast.error{ border-color:var(--red); }
   .footnote{ margin-top:50px; padding-top:16px; border-top:1px solid var(--line-soft); color:var(--muted-2); font-size:11.5px; line-height:1.6; }
+  .copyright{ margin-top:14px; color:var(--muted-2); font-size:11px; font-family:'IBM Plex Mono',monospace; }
+
+  .zoomable{ cursor:zoom-in; }
+  .lightbox{
+    position:fixed; inset:0; background:rgba(6,10,8,0.92); display:none;
+    align-items:center; justify-content:center; z-index:100; cursor:zoom-out; padding:30px;
+  }
+  .lightbox.open{ display:flex; }
+  .lightbox img{ max-width:min(94vw,1100px); max-height:90vh; border-radius:6px; border:1px solid var(--line); object-fit:contain; }
+  .lightbox-close{
+    position:absolute; top:18px; right:24px; color:var(--muted); font-size:22px; cursor:pointer;
+    width:36px; height:36px; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line); border-radius:6px; background:var(--panel);
+  }
+  .lightbox-close:hover{ color:var(--text); border-color:var(--muted-2); }
 </style>
 </head>
 <body>
@@ -130,13 +162,13 @@
 <div class="shell">
 
   <div class="config-banner" id="configBanner">
-    ⚠ <strong>Not configured yet.</strong> Open this file, find the <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> lines near the top of the <code>&lt;script&gt;</code> block, and fill them in with your project's values. See the setup guide for the SQL script and where to find these keys.
+    ⚠ <strong>Not configured yet.</strong> Open this file, find the <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> lines near the top of the <code>&lt;script&gt;</code> block, and fill them in with your project's values.
   </div>
 
   <div class="masthead">
     <div>
       <h1 class="display">OSINT Account Directory</h1>
-      <div class="subtitle">A Service Provided by USA Inicdent Tracker</div>
+      <div class="subtitle">A Service Provided by USA Incident Tracker</div>
     </div>
     <div class="stamp" id="recordCount">— records on file</div>
   </div>
@@ -148,30 +180,35 @@
 
   <!-- ===================== SEARCH VIEW ===================== -->
   <div class="view active" id="view-search">
-    <div class="console">
-      <div class="console-row">
-        <div class="field">
-          <label for="qName">Account name / handle</label>
-          <input id="qName" type="text" placeholder="e.g. @fieldnotes_intel">
+
+    <div id="searchListWrap">
+      <div class="console">
+        <div class="console-row">
+          <div class="field">
+            <label for="qName">Account name / handle</label>
+            <input id="qName" type="text" placeholder="e.g. @fieldnotes_intel">
+          </div>
+          <div class="field">
+            <label for="qCountry">Country</label>
+            <input id="qCountry" type="text" placeholder="e.g. Ukraine" list="countryList">
+            <datalist id="countryList"></datalist>
+          </div>
+          <div class="console-actions">
+            <button class="btn" id="btnSearch">Search</button>
+            <button class="btn ghost" id="btnClear">Clear</button>
+          </div>
         </div>
-        <div class="field">
-          <label for="qCountry">Country</label>
-          <input id="qCountry" type="text" placeholder="e.g. Ukraine" list="countryList">
-          <datalist id="countryList"></datalist>
-        </div>
-        <div class="console-actions">
-          <button class="btn" id="btnSearch">Search</button>
-          <button class="btn ghost" id="btnClear">Clear</button>
-        </div>
+      </div>
+
+      <div class="result-count" id="resultCount"></div>
+      <div class="grid" id="resultsGrid"></div>
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="display">No matching records</div>
+        <div>Try a different name or country, or check back later.</div>
       </div>
     </div>
 
-    <div class="result-count" id="resultCount"></div>
-    <div class="grid" id="resultsGrid"></div>
-    <div class="empty-state" id="emptyState" style="display:none;">
-      <div class="display">No matching records</div>
-      <div>Try a different name or country, or check back later.</div>
-    </div>
+    <div id="dossierDetail" style="display:none;"></div>
   </div>
 
   <!-- ===================== STAFF VIEW ===================== -->
@@ -190,12 +227,12 @@
             <label for="staffPass">Password</label>
             <input id="staffPass" type="password" placeholder="••••••••">
           </div>
-          <button class="btn" id="btnLogin">Sign In</button>
+          <button class="btn block" id="btnLogin">Sign In</button>
           <div id="loginError" style="color:var(--red); font-size:12.5px; display:none;"></div>
         </div>
       </div>
       <div class="warn">
-        Staff accounts are created by you in the Supabase dashboard (Authentication → Users → Add user) — there's no public sign-up here. This is real server-side authentication: only people with a valid Supabase login can add, edit, or delete accounts.
+        Staff accounts are created by you in the Supabase dashboard (Authentication → Users → Add user) — there's no public sign-up. Only signed-in staff can add, edit, or delete accounts and notes.
       </div>
     </div>
 
@@ -209,12 +246,16 @@
           <h3 id="formTitle">Add Account</h3>
           <div class="form-col">
             <div class="field">
-              <label for="fName">Account name / handle</label>
+              <label for="fName">Handle</label>
               <input id="fName" type="text" placeholder="e.g. @fieldnotes_intel">
             </div>
             <div class="field">
               <label for="fCountry">Country</label>
               <input id="fCountry" type="text" placeholder="e.g. Ukraine">
+            </div>
+            <div class="field">
+              <label for="fAliases">Account name (comma separated)</label>
+              <input id="fAliases" type="text" placeholder="e.g. Intelligence FRONT, IntelFront">
             </div>
             <div class="field">
               <label>Photo</label>
@@ -245,6 +286,32 @@
           </div>
         </div>
       </div>
+
+      <div class="panel" id="addStaffPanel" style="margin-top:18px; max-width:420px; display:none;">
+        <h3>Add Staff Member</h3>
+        <div class="form-col">
+          <div class="field">
+            <label for="newStaffEmail">Their email</label>
+            <input id="newStaffEmail" type="email" placeholder="colleague@example.com">
+          </div>
+          <div class="field">
+            <label for="newStaffPass">Temporary password</label>
+            <input id="newStaffPass" type="password" placeholder="At least 8 characters">
+          </div>
+          <div class="field" style="flex-direction:row; align-items:center; gap:8px;">
+            <input type="checkbox" id="newStaffIsAdmin" style="width:auto;">
+            <label for="newStaffIsAdmin" style="text-transform:none; font-size:13px; color:var(--text); letter-spacing:normal; font-family:'IBM Plex Sans',sans-serif;">Also let them add other staff</label>
+          </div>
+          <button class="btn" id="btnAddStaff">Add Staff Member</button>
+          <div id="addStaffMsg" style="font-size:12.5px; display:none;"></div>
+        </div>
+        <div class="warn">
+          They can sign in with this email/password right away. There's no in-app "change password" yet — either share this password to change on their own via Supabase's password-reset flow, or update it for them later in Supabase → Authentication → Users.
+        </div>
+      </div>
+      <div class="warn" id="notAdminNote" style="max-width:420px; margin-top:18px; display:none;">
+        Only staff admins can add new staff members. Ask an existing admin if you need someone added.
+      </div>
     </div>
 
   </div>
@@ -253,45 +320,50 @@
     Entries reflect user-submitted notes and are not verified claims. Reliability scores are crowd-submitted opinions (1–10), not a guarantee of accuracy. Please don't submit private personal information — this directory is meant to track public account activity, not individuals' offline identities.
   </div>
 
+  <div class="copyright">© <span id="copyYear"></span> USA Incident Tracker. All rights reserved.</div>
+
 </div>
 
 <div class="toast" id="toast"></div>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <script>
 /* ============================================================
    CONFIG — fill these in with your Supabase project's values.
    Project Settings → API → Project URL / anon public key.
-   The anon key is safe to expose in client code; it only grants
-   what your Row Level Security policies allow (see setup guide).
    ============================================================ */
-const SUPABASE_URL = "https://vpnhtkqhgduqylrznqxw.supabase.co/";
+const SUPABASE_URL = "https://vpnhtkqhgduqylrznqxw.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZwbmh0a3FoZ2R1cXlscnpucXh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc5Njk5NjgsImV4cCI6MjEwMzU0NTk2OH0.Ms7hrOPQ5Mp2Cklk1Y_L_weT3Qo1wMHx_lNhqXn_OZU";
 
 const isConfigured = !SUPABASE_URL.includes("YOUR-PROJECT-REF") && !SUPABASE_ANON_KEY.includes("YOUR-ANON");
 if(!isConfigured) document.getElementById('configBanner').style.display = 'block';
-
 const sb = isConfigured ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 /* ---------------- STATE ---------------- */
-let accountsCache = []; // [{id,name,country,photo,notes:[{id,text,score,author,date}],dateAdded}]
+let accountsCache = [];
 let editingId = null;
 let uploadedPhotoBlob = null;
-let uploadedPhotoPreview = null;
-const openDossiers = new Set();
+let currentUserEmail = null;
+let isAdmin = false;
+let activeDossierId = null;
+const PIN = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+const STAR = '<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
 
 /* ---------------- DATA LOADING ---------------- */
 async function fetchAccounts(){
   if(!sb) return;
   const { data, error } = await sb
     .from('accounts')
-    .select('id, name, country, photo_url, date_added, notes ( id, text, score, author, created_at )')
+    .select('id, name, country, photo_url, aliases, date_added, notes ( id, text, score, author, created_at )')
     .order('date_added', { ascending: true });
   if(error){ showToast('Could not load directory: ' + error.message, true); return; }
   accountsCache = (data || []).map(row => ({
-    id: row.id,
-    name: row.name,
-    country: row.country,
-    photo: row.photo_url,
+    id: row.id, name: row.name, country: row.country, photo: row.photo_url,
+    aliases: row.aliases || [],
     dateAdded: new Date(row.date_added).getTime(),
     notes: (row.notes || []).map(n => ({
       id: n.id, text: n.text, score: n.score, author: n.author, date: new Date(n.created_at).getTime()
@@ -301,7 +373,6 @@ async function fetchAccounts(){
 
 /* ---------------- UTIL ---------------- */
 function esc(s){ return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function caseId(idx){ return 'OSINT-' + String(idx+1).padStart(4,'0'); }
 function showToast(msg, isError){
   const t = document.getElementById('toast');
   t.textContent = msg;
@@ -314,9 +385,31 @@ function avgScore(acc){
   if(!scored.length) return null;
   return scored.reduce((a,n)=>a+n.score,0) / scored.length;
 }
-function scoreBand(avg){ if(avg===null) return 'none'; if(avg>=7) return 'high'; if(avg>=4) return 'mid'; return 'low'; }
-function bandLabel(band){ return { high:'Verified Source', mid:'Mixed Reliability', low:'Low Confidence', none:'Unrated' }[band]; }
-function bandClass(avg){ if(avg===null) return 'r'; if(avg>=7) return 'g'; if(avg>=4) return 'a'; return 'r'; }
+function starBadge(avg){
+  if(avg===null) return `<span class="star-badge na">${STAR} N/A</span>`;
+  return `<span class="star-badge">${STAR} ${avg.toFixed(1)}/10</span>`;
+}
+
+/* ---------------- LIGHTBOX ---------------- */
+function attachZoomHandlers(container){
+  container.querySelectorAll('.zoomable').forEach(img=>{
+    img.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      openLightbox(img.dataset.full);
+    });
+  });
+}
+function openLightbox(src){
+  if(!src) return;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.getElementById('lightboxImg').src = '';
+}
+document.getElementById('lightbox').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 
 /* ---------------- TABS ---------------- */
 document.querySelectorAll('.tab-btn').forEach(btn=>{
@@ -328,7 +421,7 @@ document.querySelectorAll('.tab-btn').forEach(btn=>{
   });
 });
 
-/* ---------------- SEARCH VIEW ---------------- */
+/* ---------------- SEARCH LIST ---------------- */
 function renderCountryList(){
   const countries = [...new Set(accountsCache.map(a=>a.country).filter(Boolean))].sort();
   document.getElementById('countryList').innerHTML = countries.map(c=>`<option value="${esc(c)}">`).join('');
@@ -350,106 +443,30 @@ function renderResults(){
 
   const grid = document.getElementById('resultsGrid');
   document.getElementById('emptyState').style.display = filtered.length ? 'none' : 'block';
-  grid.innerHTML = filtered.map(acc => renderCard(acc, accountsCache.indexOf(acc))).join('');
-
+  grid.innerHTML = filtered.map(acc => renderCard(acc)).join('');
   filtered.forEach(acc=>{
-    const btn = document.getElementById('toggle-'+acc.id);
-    if(btn) btn.addEventListener('click', ()=>toggleDossier(acc.id));
-    const addBtn = document.getElementById('addnote-'+acc.id);
-    if(addBtn) addBtn.addEventListener('click', ()=>submitNote(acc.id));
-    document.querySelectorAll('#scorepick-'+acc.id+' button').forEach(sb2=>{
-      sb2.addEventListener('click', ()=>{
-        document.querySelectorAll('#scorepick-'+acc.id+' button').forEach(x=>x.classList.remove('sel'));
-        sb2.classList.add('sel');
-      });
-    });
+    document.getElementById('card-'+acc.id).addEventListener('click', ()=>openDossier(acc.id));
   });
+  attachZoomHandlers(grid);
 }
 
-function renderCard(acc, idx){
+function renderCard(acc){
   const avg = avgScore(acc);
-  const band = scoreBand(avg);
-  const bc = bandClass(avg);
   const notes = acc.notes || [];
-  const isOpen = openDossiers.has(acc.id);
-
-  const meterTicks = Array.from({length:10}, (_,i)=>{
-    const on = avg !== null && i < Math.round(avg);
-    return `<i class="${on ? 'on '+bc : ''}"></i>`;
-  }).join('');
-
-  const notesHtml = notes.length
-    ? notes.slice().reverse().map(n => `
-        <div class="note">
-          <div class="note-head"><span>${esc(n.author || 'Anonymous')} · ${new Date(n.date).toLocaleDateString()}</span>
-          <span class="note-score">${typeof n.score==='number' ? n.score+'/10' : '—'}</span></div>
-          <div class="note-text">${esc(n.text)}</div>
-        </div>`).join('')
-    : `<div class="empty-note">No notes yet — be the first to add context.</div>`;
-
   return `
-    <div class="card">
-      <div class="card-id mono">${caseId(idx)}</div>
+    <div class="card" id="card-${acc.id}">
       <div class="card-top">
-        <div class="photo">${acc.photo ? `<img src="${acc.photo}" alt="">` : '👤'}</div>
+        <div class="photo">${acc.photo ? `<img class="zoomable" data-full="${esc(acc.photo)}" src="${esc(acc.photo)}" alt="">` : '👤'}</div>
         <div>
           <p class="card-title">${esc(acc.name)}</p>
-          <div class="card-country">${esc(acc.country || 'Unknown location')}</div>
+          <div class="card-loc">${PIN} ${esc(acc.country || 'Unknown location')}</div>
         </div>
       </div>
-      <div class="meter-row">
-        <div class="meter">${meterTicks}</div>
-        <div class="meter-score ${avg===null?'na':''}">${avg===null ? 'N/A' : avg.toFixed(1)}</div>
-      </div>
-      <span class="stamp-corner ${band}">${bandLabel(band)}</span>
       <div class="card-foot">
+        ${starBadge(avg)}
         <span class="note-count">${notes.length} note${notes.length===1?'':'s'}</span>
-        <button class="link-btn" id="toggle-${acc.id}">${isOpen ? 'Hide dossier' : 'View dossier'}</button>
-      </div>
-      <div class="dossier-body ${isOpen?'open':''}" id="dossier-${acc.id}">
-        <div class="notes-list">${notesHtml}</div>
-        <div class="add-note">
-          <label style="font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-2); font-family:'IBM Plex Mono',monospace;">Add a note</label>
-          <textarea id="notetext-${acc.id}" rows="2" placeholder="What do you know about this account's reliability?"></textarea>
-          <label style="font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-2); font-family:'IBM Plex Mono',monospace;">Reliability score</label>
-          <div class="score-pick" id="scorepick-${acc.id}">
-            ${Array.from({length:10},(_,i)=>i+1).map(n=>`<button type="button" data-n="${n}">${n}</button>`).join('')}
-          </div>
-          <input id="noteauthor-${acc.id}" type="text" placeholder="Your name or handle (optional)">
-          <button class="btn" id="addnote-${acc.id}">Submit Note</button>
-        </div>
       </div>
     </div>`;
-}
-
-function toggleDossier(id){
-  if(openDossiers.has(id)) openDossiers.delete(id); else openDossiers.add(id);
-  renderResults();
-}
-
-async function submitNote(accId){
-  if(!sb) return showToast('Backend not configured yet', true);
-  const textEl = document.getElementById('notetext-'+accId);
-  const authorEl = document.getElementById('noteauthor-'+accId);
-  const pickBtn = document.querySelector('#scorepick-'+accId+' button.sel');
-  const text = textEl.value.trim();
-  const score = pickBtn ? parseInt(pickBtn.dataset.n,10) : null;
-
-  if(!text && score===null){ showToast('Add a note or a score first'); return; }
-
-  const { error } = await sb.from('notes').insert({
-    account_id: accId,
-    text: text || '(score only, no note text)',
-    score,
-    author: authorEl.value.trim() || null
-  });
-  if(error){ showToast('Could not save note: ' + error.message, true); return; }
-
-  openDossiers.add(accId);
-  await fetchAccounts();
-  showToast('Note added');
-  renderResults();
-  renderCountryList();
 }
 
 document.getElementById('btnSearch').addEventListener('click', renderResults);
@@ -458,6 +475,117 @@ document.getElementById('qCountry').addEventListener('keydown', e=>{ if(e.key===
 document.getElementById('btnClear').addEventListener('click', ()=>{
   document.getElementById('qName').value=''; document.getElementById('qCountry').value=''; renderResults();
 });
+
+/* ---------------- DOSSIER DETAIL PAGE ---------------- */
+function openDossier(id){
+  activeDossierId = id;
+  document.getElementById('searchListWrap').style.display = 'none';
+  const wrap = document.getElementById('dossierDetail');
+  wrap.style.display = 'block';
+  renderDossier();
+}
+
+function closeDossier(){
+  activeDossierId = null;
+  document.getElementById('dossierDetail').style.display = 'none';
+  document.getElementById('searchListWrap').style.display = 'block';
+}
+
+function renderDossier(){
+  const acc = accountsCache.find(a=>a.id===activeDossierId);
+  const wrap = document.getElementById('dossierDetail');
+  if(!acc){ closeDossier(); return; }
+  const avg = avgScore(acc);
+  const notes = acc.notes || [];
+
+  const notesHtml = notes.length ? notes.slice().reverse().map(n => `
+      <div class="note">
+        <div class="note-head">
+          <span class="note-author">${esc(n.author || 'Anonymous')}</span>
+          ${typeof n.score==='number' ? `<span class="star-badge">${STAR} ${n.score}/10</span>` : ''}
+        </div>
+        <div class="note-text">${esc(n.text)}</div>
+        <div class="note-foot">
+          <span class="note-date">${new Date(n.date).toLocaleDateString()}</span>
+          ${currentUserEmail ? `<button class="note-del" data-noteid="${n.id}">🗑 Delete</button>` : ''}
+        </div>
+      </div>`).join('') : `<div class="empty-note">No notes yet — be the first to add context.</div>`;
+
+  wrap.innerHTML = `
+    <button class="back-link" id="btnBack">← Back to search</button>
+    <div class="dossier-grid">
+      <div>
+        <div class="dossier-photo">${acc.photo ? `<img class="zoomable" data-full="${esc(acc.photo)}" src="${esc(acc.photo)}">` : '👤'}</div>
+        <div class="dossier-loc">${PIN} ${esc(acc.country || 'Unknown location')}</div>
+        <div class="score-card">
+          <div class="big-star">${STAR} ${avg===null ? 'N/A' : avg.toFixed(1)+'/10'}</div>
+          <div class="cap">avg reliability · ${notes.length} note${notes.length===1?'':'s'}</div>
+        </div>
+      </div>
+      <div>
+        ${(acc.aliases && acc.aliases.length) ? `<div class="alias-chips">${acc.aliases.map(a=>`<span class="alias-chip">${esc(a)}</span>`).join('')}</div>` : ''}
+        <h1 class="dossier-handle">${esc(acc.name)}</h1>
+        <h2 class="section-label">Community notes (${notes.length})</h2>
+        <div class="notes-list">${notesHtml}</div>
+      </div>
+      <div class="add-note-card">
+        <h3>Add a note</h3>
+        <div class="form-col">
+          <div class="field">
+            <label for="noteAuthor">Your name (optional)</label>
+            <input id="noteAuthor" type="text" placeholder="Anonymous">
+          </div>
+          <div class="field">
+            <label for="noteText">Note</label>
+            <textarea id="noteText" rows="4" placeholder="Share what you know about this account…"></textarea>
+          </div>
+          <div class="field">
+            <div class="slider-label-row">
+              <label for="noteScore">Reliability score</label>
+              <span class="mono" id="scoreVal">5/10</span>
+            </div>
+            <input type="range" id="noteScore" min="1" max="10" value="5">
+            <div class="slider-caps"><span>Unreliable</span><span>Highly reliable</span></div>
+          </div>
+          <button class="btn block" id="btnAddNote">Add note</button>
+        </div>
+      </div>
+    </div>`;
+
+  document.getElementById('btnBack').addEventListener('click', closeDossier);
+  attachZoomHandlers(wrap);
+  document.getElementById('noteScore').addEventListener('input', (e)=>{
+    document.getElementById('scoreVal').textContent = e.target.value + '/10';
+  });
+  document.getElementById('btnAddNote').addEventListener('click', ()=>submitNote(acc.id));
+  document.querySelectorAll('.note-del').forEach(b=>{
+    b.addEventListener('click', ()=>deleteNote(b.dataset.noteid));
+  });
+}
+
+async function submitNote(accId){
+  if(!sb) return showToast('Backend not configured yet', true);
+  const text = document.getElementById('noteText').value.trim();
+  const author = document.getElementById('noteAuthor').value.trim();
+  const score = parseInt(document.getElementById('noteScore').value, 10);
+  if(!text){ showToast('Write a note before submitting'); return; }
+
+  const { error } = await sb.from('notes').insert({ account_id: accId, text, score, author: author || null });
+  if(error){ showToast('Could not save note: ' + error.message, true); return; }
+  await fetchAccounts();
+  showToast('Note added');
+  renderDossier();
+  renderCountryList();
+}
+
+async function deleteNote(noteId){
+  if(!confirm('Delete this note?')) return;
+  const { error } = await sb.from('notes').delete().eq('id', noteId);
+  if(error){ showToast('Delete failed: ' + error.message, true); return; }
+  await fetchAccounts();
+  showToast('Note deleted');
+  renderDossier();
+}
 
 /* ---------------- STAFF AUTH ---------------- */
 document.getElementById('btnLogin').addEventListener('click', doLogin);
@@ -476,20 +604,63 @@ async function doLogin(){
 
 document.getElementById('btnLogout').addEventListener('click', async ()=>{
   if(sb) await sb.auth.signOut();
+  currentUserEmail = null;
+  isAdmin = false;
   document.getElementById('loginWrap').style.display = 'block';
   document.getElementById('staffPanel').style.display = 'none';
+  document.getElementById('addStaffPanel').style.display = 'none';
+  document.getElementById('notAdminNote').style.display = 'none';
   document.getElementById('staffEmail').value = '';
   document.getElementById('staffPass').value = '';
+  if(activeDossierId) renderDossier();
 });
 
-function onSignedIn(session){
+async function onSignedIn(session){
+  currentUserEmail = session.user.email;
   document.getElementById('loginWrap').style.display = 'none';
   document.getElementById('staffPanel').style.display = 'block';
   document.getElementById('whoEmail').textContent = session.user.email;
   renderMgmtTable();
+  if(activeDossierId) renderDossier();
+
+  const { data: adminRow } = await sb.from('staff_admins').select('user_id').eq('user_id', session.user.id).maybeSingle();
+  isAdmin = !!adminRow;
+  document.getElementById('addStaffPanel').style.display = isAdmin ? 'block' : 'none';
+  document.getElementById('notAdminNote').style.display = isAdmin ? 'none' : 'block';
 }
 
-/* ---------------- STAFF: PHOTO UPLOAD (resize client-side) ---------------- */
+/* ---------------- STAFF: ADD NEW STAFF MEMBER ---------------- */
+document.getElementById('btnAddStaff').addEventListener('click', async ()=>{
+  if(!sb) return showToast('Backend not configured yet', true);
+  const email = document.getElementById('newStaffEmail').value.trim();
+  const password = document.getElementById('newStaffPass').value;
+  const makeAdmin = document.getElementById('newStaffIsAdmin').checked;
+  const msg = document.getElementById('addStaffMsg');
+  msg.style.display = 'none';
+
+  if(!email || !password){ showToast('Email and password are required'); return; }
+  if(password.length < 8){ showToast('Password must be at least 8 characters'); return; }
+
+  const btn = document.getElementById('btnAddStaff');
+  btn.disabled = true;
+  const { data, error } = await sb.functions.invoke('create-staff', { body: { email, password, makeAdmin } });
+  btn.disabled = false;
+
+  const failMsg = error ? error.message : (data && data.error ? data.error : null);
+  if(failMsg){
+    msg.textContent = failMsg;
+    msg.style.color = 'var(--red)';
+    msg.style.display = 'block';
+    return;
+  }
+
+  document.getElementById('newStaffEmail').value = '';
+  document.getElementById('newStaffPass').value = '';
+  document.getElementById('newStaffIsAdmin').checked = false;
+  showToast('Staff member added — they can sign in now');
+});
+
+/* ---------------- STAFF: PHOTO UPLOAD ---------------- */
 document.getElementById('fPhoto').addEventListener('change', (e)=>{
   const file = e.target.files[0];
   if(!file) return;
@@ -497,7 +668,7 @@ document.getElementById('fPhoto').addEventListener('change', (e)=>{
   reader.onload = (ev)=>{
     const img = new Image();
     img.onload = ()=>{
-      const maxDim = 400;
+      const maxDim = 1400;
       let w = img.width, h = img.height;
       if(w > h && w > maxDim){ h = h*(maxDim/w); w = maxDim; }
       else if(h > maxDim){ w = w*(maxDim/h); h = maxDim; }
@@ -506,10 +677,9 @@ document.getElementById('fPhoto').addEventListener('change', (e)=>{
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
       canvas.toBlob((blob)=>{
         uploadedPhotoBlob = blob;
-        uploadedPhotoPreview = canvas.toDataURL('image/jpeg', 0.8);
-        document.getElementById('uploadPreview').innerHTML = `<img src="${uploadedPhotoPreview}">`;
+        document.getElementById('uploadPreview').innerHTML = `<img src="${canvas.toDataURL('image/jpeg',0.85)}">`;
         document.getElementById('uploadLabel').textContent = 'Photo ready — click to replace';
-      }, 'image/jpeg', 0.8);
+      }, 'image/jpeg', 0.85);
     };
     img.src = ev.target.result;
   };
@@ -531,6 +701,7 @@ document.getElementById('btnSave').addEventListener('click', async ()=>{
   const name = document.getElementById('fName').value.trim();
   const country = document.getElementById('fCountry').value.trim();
   const note = document.getElementById('fNote').value.trim();
+  const aliases = document.getElementById('fAliases').value.split(',').map(s=>s.trim()).filter(Boolean);
   if(!name){ showToast('Account name is required'); return; }
 
   const saveBtn = document.getElementById('btnSave');
@@ -538,20 +709,16 @@ document.getElementById('btnSave').addEventListener('click', async ()=>{
   const photoUrl = await uploadPhotoIfAny();
 
   if(editingId){
-    const patch = { name, country };
+    const patch = { name, country, aliases };
     if(photoUrl) patch.photo_url = photoUrl;
     const { error } = await sb.from('accounts').update(patch).eq('id', editingId);
     if(error){ showToast('Update failed: ' + error.message, true); saveBtn.disabled=false; return; }
-    if(note){
-      await sb.from('notes').insert({ account_id: editingId, text: note, score: null, author: 'Staff' });
-    }
+    if(note) await sb.from('notes').insert({ account_id: editingId, text: note, score: null, author: 'Staff' });
     showToast('Account updated');
   }else{
-    const { data, error } = await sb.from('accounts').insert({ name, country, photo_url: photoUrl }).select().single();
+    const { data, error } = await sb.from('accounts').insert({ name, country, photo_url: photoUrl, aliases }).select().single();
     if(error){ showToast('Save failed: ' + error.message, true); saveBtn.disabled=false; return; }
-    if(note){
-      await sb.from('notes').insert({ account_id: data.id, text: note, score: null, author: 'Staff' });
-    }
+    if(note) await sb.from('notes').insert({ account_id: data.id, text: note, score: null, author: 'Staff' });
     showToast('Account added');
   }
 
@@ -566,10 +733,10 @@ document.getElementById('btnSave').addEventListener('click', async ()=>{
 document.getElementById('btnCancelEdit').addEventListener('click', resetForm);
 
 function resetForm(){
-  editingId = null;
-  uploadedPhotoBlob = null; uploadedPhotoPreview = null;
+  editingId = null; uploadedPhotoBlob = null;
   document.getElementById('fName').value = '';
   document.getElementById('fCountry').value = '';
+  document.getElementById('fAliases').value = '';
   document.getElementById('fNote').value = '';
   document.getElementById('fPhoto').value = '';
   document.getElementById('uploadPreview').innerHTML = '🖼';
@@ -582,10 +749,10 @@ function resetForm(){
 function startEdit(id){
   const acc = accountsCache.find(a=>a.id===id);
   if(!acc) return;
-  editingId = id;
-  uploadedPhotoBlob = null; uploadedPhotoPreview = null;
+  editingId = id; uploadedPhotoBlob = null;
   document.getElementById('fName').value = acc.name;
   document.getElementById('fCountry').value = acc.country || '';
+  document.getElementById('fAliases').value = (acc.aliases || []).join(', ');
   document.getElementById('fNote').value = '';
   document.getElementById('uploadPreview').innerHTML = acc.photo ? `<img src="${acc.photo}">` : '🖼';
   document.getElementById('uploadLabel').textContent = acc.photo ? 'Current photo — upload to replace' : 'Click to upload a photo (auto-resized)';
@@ -631,14 +798,16 @@ function renderMgmtTable(){
 
 /* ---------------- INIT ---------------- */
 async function init(){
+  document.getElementById('copyYear').textContent = new Date().getFullYear();
   if(!sb){ renderResults(); return; }
   await fetchAccounts();
   renderResults();
   renderCountryList();
   const { data: { session } } = await sb.auth.getSession();
   if(session) onSignedIn(session);
-  sb.auth.onAuthStateChange((event, session)=>{
+  sb.auth.onAuthStateChange((event)=>{
     if(event === 'SIGNED_OUT'){
+      currentUserEmail = null;
       document.getElementById('loginWrap').style.display = 'block';
       document.getElementById('staffPanel').style.display = 'none';
     }
